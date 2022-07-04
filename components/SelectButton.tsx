@@ -1,12 +1,12 @@
 interface ButtonProps {
-  children: string;
-  value: string;
-  id: string;
-  onClick: any;
+  children: string
+  value: string
+  id: string
+  onClick: any
 }
 
 const SelectButton = (props: ButtonProps) => {
-  const { children, id, onClick, value='' } = props;
+  const { children, id, onClick, value='' } = props
   
   return (
     <button
@@ -21,4 +21,4 @@ const SelectButton = (props: ButtonProps) => {
     </button>
   )
 }
-export default SelectButton;
+export default SelectButton

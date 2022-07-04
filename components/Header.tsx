@@ -16,10 +16,10 @@ const Header = ({ title, priceRewardData }: HeaderProps) => {
   return (
     <div>
       <div className='flex flex-row h-40 w-full p-4 w-100 items-center bg-yellow-200 rounded-b-xl'>
-        <div className='title text-left'>
+        <div className='title text-left text-xl'>
           {title}
         </div>
-        <div className='price text-right flex-auto w-64 self-start'>
+        <div className='price text-right flex-auto w-64'>
           <div className='number text-orange-500 font-bold text-xl'>
             {convertToCurrency(priceRewardData.price)}
           </div>
