@@ -46,19 +46,19 @@ function ProductDetails({ data, variantRewardList }: ItemObj) {
 
   // only run once when component is rendered
   const preSelectOptions = () => {
-    let maxReward = {key: '', value: 0}
+    let maxReward = { key: '', value: 0 }
     // find the highest reward in variantRewards
-    for(const key in variantRewardList) {
-      maxReward = maxReward.value < variantRewardList[key] ? {key, value: variantRewardList[key]} : maxReward
+    for (const key in variantRewardList) {
+      maxReward = maxReward.value < variantRewardList[key] ? { key, value: variantRewardList[key] } : maxReward
     }
 
     // find the pre-selected variant
     const highestRewardVariant = variants.find((item: IVariant) => {
       return item.id === parseInt(maxReward.key)
     })
-    return {0: highestRewardVariant?.option1, 1: highestRewardVariant?.option2}
+    return { 0: highestRewardVariant?.option1, 1: highestRewardVariant?.option2 }
   }
-  
+
   const [selectOptions, setSelectOptions] = useState<any>(preSelectOptions())
 
   const displayPriceReward = () => {
@@ -74,18 +74,18 @@ function ProductDetails({ data, variantRewardList }: ItemObj) {
     return { price: 'Variant Unavailable', reward: null }
   }
 
-  const onClickOptions = (e: { target: { id: any }}, index: keyof object) => {
+  const onClickOptions = (e: { target: { id: any } }, index: keyof object) => {
     let newObj: any = { ...selectOptions }
     newObj[index] = e.target.id
     setSelectOptions(newObj)
   }
 
   const addToStore = () => {
-    addToCart({ variables: { variantId: displayPriceReward().variantId?.toString() } })
+    addToCart({ variables: { variantId: priceAndReward.variantId?.toString() } })
   }
 
-  const submitBtnStyles = isNaN(displayPriceReward().price) || loading ? 'p-6 w-full bg-gray-400 text-white' : 'p-6 w-full bg-orange-400 text-white'
   const priceAndReward = displayPriceReward()
+  const submitBtnStyles = isNaN(priceAndReward.price) || loading ? 'p-6 w-full bg-gray-400 text-white' : 'p-6 w-full bg-orange-400 text-white'
 
   return (
     <div className='container'>
@@ -117,7 +117,7 @@ function ProductDetails({ data, variantRewardList }: ItemObj) {
         })}
       </div>
       <div className='add-to-store'>
-        <button className={submitBtnStyles} onClick={addToStore} disabled={isNaN(displayPriceReward().price) || loading}>Add to My Store</button>
+        <button className={submitBtnStyles} onClick={addToStore} disabled={isNaN(priceAndReward.price) || loading}>Add to My Store</button>
       </div>
     </div>
   )

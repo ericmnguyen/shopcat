@@ -40,7 +40,6 @@ const Home: NextPage = (props: Response) => {
         </div>
       </Suspense>
     </ApolloProvider>
-
   )
 }
 
